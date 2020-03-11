@@ -4,11 +4,11 @@
 -- This program displays a background from the internet and two animated images.
 
 --hide the status bar
-display.setStatusbar(display.setHiddenStatusBar)
+display.setStatusBar(display.setHiddenStatusBar)
 
 --local variables
 local backgroundImage = display.newImageRect("Images/ottawa.png", 2048, 1536)
-local lebronJames = displayNewImageRect("Images/lebronJames.png", 150, 150)
+local lebronJames = display.newImageRect("Images/lebronJames.png", 150, 150)
 local lebronJamesWidth = lebronJames.width 
 local lebronJamesHeight = lebrinJames.height 
 
