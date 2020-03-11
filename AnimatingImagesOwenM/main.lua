@@ -13,7 +13,7 @@ display.setStatusBar(display.HiddenStatusBar)
 local textSize = 108
 
 --local variables
-local backgroundImage 
+local backgroundImage
 local lebronJames 
 local cube 
 local ottawaText
@@ -28,6 +28,8 @@ local alreadyTouchedOttawaText = false
 --GLOBAL VARIABLES 
 -------------------------------------------------------------------------------
 
+--set scroll speed
+scrollSpeed = 5
 
 
 -------------------------------------------------------------------------
@@ -109,30 +111,59 @@ end
 
 
 --moving my objects:
-local backgroundImage= display.newImageRect("Image/background.png", 2048, 1536)
 
---character image with width and hieght
-local girl5 = display.newImageRect("Images/girl5.png", 200, 200)
+--moving cube
 
---set the image to be transparent
-girl5.alpha = 0
-
---set the initial x and y position of beetleship
-girl5.x = 0
-girl5.y = display.contentHeight/3
-
---Function: MoveShip
+--Function: Movecube
 --Input: this function accepts an event listener
 --Output: none
---Description: This function adds the scroll speed to the x-value of the ship
-local function MoveShip(event)
+--Description: This function adds the scroll speed to the x-value of the Image
+--character image with width and hieght
+
+local cube = display.newImageRect("Images/cube.png", 200, 200)
+
+--set the image to be transparent
+cube.alpha = 0
+
+--set the initial x and y position of beetleship
+cube.x = 0
+cube.y = display.contentHeight/3
+
+
+local function MoveCube(event)
+	--add the scrollSpeed to the x-value of the image
+	cube.x = cube.x + scrollSpeed
+	--change the transparency every time it moves so that it fades out
+    cube.alpha = cube.alpha - 0
+end
+
+--Move cube will be called over and over again
+Runtime:addEventListener("enterFrame", MoveCube)
+
+--Function: move lebronJames
+--Input: this function accepts the event listener
+--output: none
+--Description:this function adds the scrollSpeed to the x value of the image
+--character image with width and hieght
+local lebronJames = display.newImageRect("Images/lebronJames.png", 300, 300)
+
+--set the image to be transparent
+lebronJames.alpha = 0.000001
+
+--set the initial x and y position of image
+lebronJames.x = 0
+lebronJames.y = display.contentHeight/3
+
+local function MoveLebronJames(event)
 	--add the scrollSpeed to the x-value of the ship
-	girl5.x = girl5.x + scrollSpeed
-	--change the transparency every time it moves so that it fades out\
-    girl5.alpha = girl5.alpha + 0.01
+	lebronJames.x = lebronJames.x + scrollSpeed
+	--change the transparency every time it moves so that it fades out
+    lebronJames.alpha = lebronJames.alpha - 0.0001
 end
 --Move ship will be called over and over again
-Runtime:addEventListener("enterFrame", MoveShip)
+Runtime:addEventListener("enterFrame", MoveLebronJames)
+
+
 
 
 
@@ -140,7 +171,7 @@ Runtime:addEventListener("enterFrame", MoveShip)
 -- OBJECT CREATION
 ------------------------------------------------------------------------
 
---local variables
+
 backgroundImage = display.newImageRect("Images/ottawa.png", 2048, 1536)
 
 lebronJames = display.newImageRect("Images/lebronJames.png", 150, 150)
@@ -153,7 +184,8 @@ lebronJames.x = 300
 lebronJames.y = 200
 
 
-cube = display.newImageRect("Images/cube.png", 150, 150)
+cube = display.newImageRect("Images/cube.png", 300,300)
+
 
 --display the text that I want:
 ottawaText = display.newText("Ottawa", 0, 0, Arial,textSize)
@@ -178,14 +210,3 @@ cube:addEventListener("touch", CubeListener)
 
 --add the respective listeners to each object 
 ottawaText:addEventListener("touch", OttawaTextListener)
-
-
-
-
-
-
-
-
-
-
-
