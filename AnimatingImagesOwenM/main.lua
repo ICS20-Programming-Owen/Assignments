@@ -139,6 +139,7 @@ end
 
 --Move cube will be called over and over again
 Runtime:addEventListener("enterFrame", MoveCube)
+timer:performWithDelay(2000, MoveCube)
 
 --Function: move lebronJames
 --Input: this function accepts the event listener
@@ -157,11 +158,28 @@ lebronJames.y = display.contentHeight/3
 local function MoveLebronJames(event)
 	--add the scrollSpeed to the x-value of the ship
 	lebronJames.x = lebronJames.x + scrollSpeed
+	lebronJames.y = lebronJames.y + scrollSpeed
 	--change the transparency every time it moves so that it fades out
     lebronJames.alpha = lebronJames.alpha - 0.0001
 end
 --Move ship will be called over and over again
 Runtime:addEventListener("enterFrame", MoveLebronJames)
+
+--Function: shrink cube
+--Input: this function accepts the event listener
+--Output: none
+--Description: this function allows the cube to grow.
+
+--cube growing function
+local function ShrinkCube(event)
+    -- add the scroll speed to the x-value of the cube
+    
+	--make the x scale for the cube
+	cube.xScale = cube.xScale - 0.01
+	cube.yScale = cube.yScale - 0.01
+
+ 
+end
 
 
 
@@ -210,3 +228,6 @@ cube:addEventListener("touch", CubeListener)
 
 --add the respective listeners to each object 
 ottawaText:addEventListener("touch", OttawaTextListener)
+
+--add event listener for cube shrinking
+Runtime:addEventListener("enterFrame", ShrinkCube)
